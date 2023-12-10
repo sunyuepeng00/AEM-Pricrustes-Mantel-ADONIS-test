@@ -27,7 +27,7 @@ a<-read.table("zach-pca.txt", header=TRUE, sep="\t",row.names=1
 a1<-a[,2:25]
 dist=vegdist(a1,method='bray') #cauclate bray-curitis distance
 site=data.frame(same=rownames(a1),groups1=a$Treatment, group2=a$Group #obtain group information
-adonis=adonis(dist~group1+group2,site, permutations=999 #do adonis analysis
+adonis=adonis(dist~group1+group2,site, permutations=1000 #do adonis analysis
 
 Procrustes
 spe<- read.csv('Mantelmidata.csv',header=True) #load microbiome data file
