@@ -1,0 +1,43 @@
+install packages
+
+in R install devtools
+
+install.packages('vegan')
+load package
+
+library(vegan)
+
+In your R session
+
+Usage:
+Mantel test
+df<-read.csv('Mantelmidata.csv',header=True) #load microbiome data file
+de<-read.csv('Mantelredata.csv, header=True) #load resistome data file
+miabund<- df[, 2:5]
+reabund<-de[,2:8]
+dist.miabund<-vegdist(abund, method='bray') # cauclate the bray-curitis distance based on the abundance data
+dist.reabund<-dist(reabund,method='euclidean')
+
+cor<-mantel(dist.miabund, dist.reabund, method='spearman',permutations=999, na.rm=TRUE) #Do mantel test
+
+ADONID
+install.packages('ggfortify')
+library(ggfortify)
+a<-read.table("zach-pca.txt", header=TRUE, sep="\t",row.names=1
+a1<-a[,2:25]
+dist=vegdist(a1,method='bray') #cauclate bray-curitis distance
+site=data.frame(same=rownames(a1),groups1=a$Treatment, group2=a$Group #obtain group information
+adonis=adonis(dist~group1+group2,site, permutations=999 #do adonis analysis
+
+Procrustes
+spe<- read.csv('Mantelmidata.csv',header=True) #load microbiome data file
+se<-read.csv('Mantelredata.csv, header=True) #load resistome data file
+spe.bray<- vegdist(spe, method='bray')
+pcoa.spe<-cmdscale(spe.bray, k=nrow(spe)-1,rig=TRUE,add=add)
+se.bray<- vegdist(se, method='bray')
+pcoa.se<-cmdscale(se.bray, k=nrow(spe)-1,rig=TRUE,add=add)
+Ordiplot(pcoa.spe,type="text",main="PCoA for Species Data, Bray Distances")
+Ordiplot(pcoa.se,type="text",main="PCoA for Species Data, Bray Distances")
+pro<-procrustes(pcoa.spe, pcoa.se, symmetric=TRUE, scores="sites")
+protest(X=pcoa.spe, Y=pcoa.se, score="sites", permutations=999 #Do procrustes tests
+
